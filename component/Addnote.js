@@ -5,15 +5,17 @@ import {
   TouchableHighlight,
   TouchableOpacity,
   TextInput,
-  Alert,alert,Keyboard
+  Alert,
+  alert,
+  Keyboard,
 } from "react-native";
 import React, { Component, useState } from "react";
 
 const Addnote = (props) => {
   const [title, setTitle] = useState("");
   const [notes, setNotes] = useState("");
-  const [checktitle, setchecktitle] = useState('')
-  const [checknote, setchecknote] = useState('')
+  const [checktitle, setchecktitle] = useState("");
+  const [checknote, setchecknote] = useState("");
 
   const addNote = () => {
     let url = "http://192.168.1.11:8000/api/users";
@@ -22,8 +24,10 @@ const Addnote = (props) => {
       notes: notes,
     };
 
-    obj.title === '' ? setchecktitle('Chưa nhập tiêu đề...') : setchecktitle('')
-    obj.notes === ''? setchecknote('Chưa nhập nội dung...') : setchecknote('')
+    obj.title === ""
+      ? setchecktitle("Chưa nhập tiêu đề...")
+      : setchecktitle("");
+    obj.notes === "" ? setchecknote("Chưa nhập nội dung...") : setchecknote("");
 
     fetch(url, {
       method: "POST",
@@ -37,20 +41,20 @@ const Addnote = (props) => {
         if (response.status == 201) {
           Alert.alert({
             title: "Thong bao",
-            message: "Da them ghi chu thanh cong!!!"
+            message: "Da them ghi chu thanh cong!!!",
           });
         }
       })
       .catch((error) => {
         console.log(error);
       });
-      Keyboard.dismiss();
+    Keyboard.dismiss();
     // props.navigation.navigate("Home");
   };
 
   return (
     <View style={{ marginTop: 0 }}>
-            <TouchableOpacity onPress={addNote} style={styles.butttom}>
+      <TouchableOpacity onPress={addNote} style={styles.butttom}>
         <Text
           style={{
             textAlign: "center",
@@ -58,7 +62,7 @@ const Addnote = (props) => {
             color: "red",
             fontWeight: "bold",
             backgroundColor: "#DDDDDD",
-            borderRadius:20
+            borderRadius: 20,
           }}
         >
           Xong
@@ -70,14 +74,18 @@ const Addnote = (props) => {
         onChangeText={(text) => setTitle(text)}
         multiline={true}
       />
-      <Text style={{color:'red',marginLeft:40,marginBottom:8}}>{checktitle}</Text>
+      <Text style={{ color: "red", marginLeft: 40, marginBottom: 8 }}>
+        {checktitle}
+      </Text>
       <TextInput
         style={styles.input1}
         placeholder="Nhap notes"
         onChangeText={(text) => setNotes(text)}
         multiline={true}
       />
-      <Text style={{color:'red',marginLeft:40,marginBottom:4}}>{checknote}</Text>
+      <Text style={{ color: "red", marginLeft: 40, marginBottom: 4 }}>
+        {checknote}
+      </Text>
     </View>
   );
 };
@@ -87,7 +95,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
   },
   input: {
-    borderWidth: 0.5,
+    borderTopWidth: 0.35,
     height: "auto",
     borderRadius: 5,
     marginTop: 30,
@@ -95,6 +103,8 @@ const styles = StyleSheet.create({
     width: "80%",
     padding: 8,
     alignSelf: "center",
+    fontWeight: "bold",
+    fontSize: 18,
   },
   cochu: {
     fontSize: 20,
@@ -102,9 +112,12 @@ const styles = StyleSheet.create({
     color: "black",
   },
   input1: {
-    borderWidth: 0.5,
+    borderTopWidth: 0.1,
+    borderLeftWidth: 0.1,
+    borderRightWidth: 0.1,
     height: "auto",
-    borderRadius: 5,
+    borderTopLeftRadius: 5,
+    borderTopRightRadius: 5,
     marginTop: 10,
     marginBottom: 10,
     width: "80%",
@@ -116,9 +129,9 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     padding: 10,
     elevation: 2,
-    height: 'auto',
+    height: "auto",
     width: 100,
-    alignSelf: 'flex-end',
-    marginRight:10
+    alignSelf: "flex-end",
+    marginRight: 10,
   },
 });

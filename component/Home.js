@@ -19,9 +19,11 @@ import {
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { ActivityIndicator } from "react-native";
 import IonIcon from "react-native-vector-icons/Ionicons";
+import {API} from '../data/dataNote' 
+import axios from 'axios'
+
 const Home = (props) => {
   const [dsnote, setdsnote] = useState([]);
-  const [data, setdata] = useState([]);
   const [characterCount, setCharacterCount] = useState(0);
   const [keySearch, setkeySearch] = useState('')
 
@@ -34,20 +36,18 @@ const Home = (props) => {
   }
 
   const getData = async () => {
-    let url = "http://192.168.1.11:8000/api/users";
-    // let data = "https://63dc9b8a2308e3e319ea7194.mockapi.io/sanpham/notes";
-
-    fetch(url)
+    fetch(API.get)
       .then((res) => res.json())
       .then((result) => {
-        console.log(result);
         setdsnote(result.data);
-        console.log(dsnote);
       })
       .catch((err) => {
         console.log(err);
       });
+    
+
   };
+
 
 
   const renderNote = ({ item }) => {
@@ -163,12 +163,9 @@ const Home = (props) => {
         
         <View style={styles.body}>
           <FlatList
-          refreshing={false}
-          onRefresh={() => getData()}
             data={dsnote.filter(title => title.title.search(keySearch) > -1)}
             keyExtractor={(item) => `key-${item._id}`}
             renderItem={renderNote}
-            onRe
           />
         </View>
         <View>
@@ -224,3 +221,37 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 });
+
+
+{/* <View style={{width:'100%',flexDirection:'row'}}>
+
+<View style={{width:'46%',margin:5,height:270,shadowRadius:20}}>
+  <Image source={require('./assets/doraemon.webp')} 
+  style={{width:'90%',height:270,alignSelf:'center',marginTop:3,borderRadius:20,position:'absolute'}} />
+  <Text style={{position:'absolute',top:'89%',left:'10%',color:'black',fontWeight:'bold',fontSize:20}}>
+    Doraemon
+  </Text>
+  <View style={{width:30,height:30,backgroundColor:'red',borderRadius:20,alignSelf:'flex-end',position:'relative',top:'3%',right:'8%'}}>
+  <Text style={{color:'white',alignSelf:'center',marginTop:5}}>
+    7.5
+  </Text>
+  </View>
+</View>
+
+<View style={{width:'46%',margin:5,height:270,shadowRadius:20}}>
+  <Image source={require('./assets/bia1.jpg')} 
+  style={{width:'90%',height:270,alignSelf:'center',marginTop:3,borderRadius:20,position:'absolute',
+  
+}}
+  />
+  <Text style={{position:'absolute',top:'89%',left:'10%',color:'black',fontWeight:'bold',fontSize:20}}>
+    Doraemon
+  </Text>
+  <View style={{width:30,height:30,backgroundColor:'red',borderRadius:20,alignSelf:'flex-end',position:'relative',top:'3%',right:'8%'}}>
+  <Text style={{color:'white',alignSelf:'center',marginTop:5}}>
+    7.5
+  </Text>
+  </View>
+</View>
+
+</View> */}

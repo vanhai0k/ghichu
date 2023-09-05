@@ -1,0 +1,32 @@
+<%- include('../inc/top') %>
+
+<div class="row">
+    <h2>Danh sách ghi chu</h2>
+
+    <table class="table table-bordered table-striped">
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Note</th>
+        </tr>
+        <% list.forEach(  ( row ) => {   %>
+            <tr>
+                <td> 
+                    <a href="/sp/edit/<%= row._id %>">  <%= row._id %>    </a>
+                   
+                 
+                </td>
+
+                <td>  <%= row.title %> </td>
+                <td>  <%= row.notes %></td>
+
+            </tr> 
+         <%   });     %>
+    </table>
+
+ 
+
+
+
+</div>
+<%- include('../inc/bottom') %>

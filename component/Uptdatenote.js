@@ -49,18 +49,35 @@ const styles = StyleSheet.create({
   
     },
     input: {
-        borderWidth: 0.5, height: 'auto', borderRadius: 5,marginTop:30,
-        marginBottom: 10, width: '80%', padding: 8, alignSelf:'center'
-    },
-    input1: {
-        borderWidth: 0.5, height: 'auto', borderRadius: 5,marginTop:10,
-        marginBottom: 10, width: '80%', padding: 8, alignSelf:'center'
-    },
-    cochu: {
-      fontSize: 20,
-      fontWeight: 'bold',
-      color: 'black',
-    },
+        borderTopWidth:0.35,
+        height: "auto",
+        borderRadius: 5,
+        marginTop: 30,
+        marginBottom: 10,
+        width: "80%",
+        padding: 8,
+        alignSelf: "center",
+        fontWeight:'bold',
+        fontSize:18
+      },
+      cochu: {
+        fontSize: 20,
+        fontWeight: "bold",
+        color: "black",
+      },
+      input1: {
+        borderTopWidth:0.1,
+        borderLeftWidth:0.1,
+        borderRightWidth:0.1,
+        height: "auto",
+        borderTopLeftRadius: 5,
+        borderTopRightRadius: 5,
+        marginTop: 10,
+        marginBottom: 10,
+        width: "80%",
+        padding: 8,
+        alignSelf: "center",
+      },
     butttom: {
         marginTop: 10,
         borderRadius: 20,
